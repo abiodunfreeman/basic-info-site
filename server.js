@@ -4,22 +4,26 @@ const port = 8080;
 
 const server = http.createServer((req, res) => {
     console.log('request made')
-    res.statusCode = 200;
+    
     res.setHeader('Content-Type', 'text/html')
     
     let path = './pages/';
     switch(req.url){
         case '/':
-            path += 'index.html'
+            path += 'index.html';
+            res.statusCode = 200;
             break;
         case '/about.html': 
-            path += 'about.html'
+            path += 'about.html';
+            res.statusCode = 200;
             break;
         case '/contact-me.html':
-            path += 'contact-me.html'
+            path += 'contact-me.html';
+            res.statusCode = 200;
             break;
         default:
             path += '404.html';
+            res.statusCode = 404;
             break;
     }
 
