@@ -7,7 +7,23 @@ const server = http.createServer((req, res) => {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/html')
     
-    fs.readFile('./pages/index.html', 'utf8',  (err, data) => {
+    let path = './pages/';
+    switch(req.url){
+        case '/':
+            path += 'index.html'
+            break;
+        case '/about.html': 
+            path += 'about.html'
+            break;
+        case '/contact-me.html':
+            path += 'contact-me.html'
+            break;
+        default:
+            path += '404.html';
+            break;
+    }
+
+    fs.readFile(path, 'utf8',  (err, data) => {
         if (err) {
             console.log(err)
             return
